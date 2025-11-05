@@ -1,0 +1,85 @@
+﻿@model IEnumerable<QuanLyHieuThuoc.Models.Entity.Thuoc>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@if (User.IsInRole("Quản lý"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenThuoc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoTa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuyCachDongGoi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GiaBan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuongTon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoaiThuoc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenThuoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuyCachDongGoi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaBan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuongTon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiThuoc.TenLoaiThuoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+    @* Nút EDIT (Sửa): Cho phép nếu đã đăng nhập (Quản lý và Dược sĩ) *@
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Edit" asp-route-id="@item.ThuocId">Edit</a> <span>|</span>
+    }
+
+    @* Nút DELETE (Xóa): CHỈ CHO PHÉP "Quản lý" *@
+    @if (User.IsInRole("Quản lý"))
+    {
+        <a asp-action="Delete" asp-route-id="@item.ThuocId">Delete</a> <span>|</span>
+    }
+
+    @* Details (Xem chi tiết): Ai cũng xem được, không cần đăng nhập *@
+    <a asp-action="Details" asp-route-id="@item.ThuocId">Details</a>
+</td>
+        </tr>
+}
+    </tbody>
+</table>

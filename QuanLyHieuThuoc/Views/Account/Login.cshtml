@@ -1,0 +1,36 @@
+﻿@model QuanLyHieuThuoc.Controllers.AccountController.LoginViewModel
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" asp-controller="Account" asp-action="Login" method="post">
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-floating mb-3">
+                    <input asp-for="TenDangNhap" class="form-control" />
+                    <label asp-for="TenDangNhap"></label>
+                    <span asp-validation-for="TenDangNhap" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input asp-for="MatKhau" class="form-control" />
+                    <label asp-for="MatKhau"></label>
+                    <span asp-validation-for="MatKhau" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Đăng nhập</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<QuanLyHieuThuoc.Models.Entity.Thuoc>
+
+@{
+    ViewData["Title"] = "Thuốc đã xóa";
+}
+
+<h1>Thuốc đã xóa (Bần cùng lắm mới tìm đến anh ư hả babe?)</h1>
+<p class="text-muted">Các sản phẩm đã xóa ở dưới này nha babe ?</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.TenThuoc)</th>
+            <th>@Html.DisplayNameFor(model => model.QuyCachDongGoi)</th>
+            <th>@Html.DisplayNameFor(model => model.GiaBan)</th>
+            <th>@Html.DisplayNameFor(model => model.SoLuongTon)</th>
+            <th>@Html.DisplayNameFor(model => model.LoaiThuoc)</th>
+            <th>@Html.DisplayNameFor(model => model.IsDeleted)</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.TenThuoc)</td>
+                <td>@Html.DisplayFor(modelItem => item.QuyCachDongGoi)</td>
+                <td>@item.GiaBan.ToString("N0")</td> @* Định dạng tiền tệ *@
+                <td>@Html.DisplayFor(modelItem => item.SoLuongTon)</td>
+                <td>@Html.DisplayFor(modelItem => item.LoaiThuoc.TenLoaiThuoc)</td>
+                <td><span class="badge bg-danger">@Html.DisplayFor(modelItem => item.IsDeleted)</span></td>
+
+                <td>
+                    @* CHỈ CHO PHÉP "Quản lý" PHỤC HỒI *@
+                    @if (User.IsInRole("Quản lý"))
+                    {
+                        <form asp-action="Restore" asp-route-id="@item.ThuocId" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-success">Phục hồi</button>
+                        </form>
+                        <span class="text-muted">|</span>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.ThuocId">Chi tiết</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
