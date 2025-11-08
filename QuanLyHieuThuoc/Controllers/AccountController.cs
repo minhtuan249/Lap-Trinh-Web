@@ -49,7 +49,6 @@ namespace QuanLyHieuThuoc.Controllers
                 // Kiểm tra User có tồn tại và mật khẩu có khớp không
                 if (user != null && user.MatKhau == model.MatKhau)
                 {
-                    // TẠO "THẺ TÊN" (Claims)
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, user.TenDangNhap),
@@ -57,7 +56,6 @@ namespace QuanLyHieuThuoc.Controllers
                         new Claim(ClaimTypes.Role, user.ChucVu) // So sánh chức vụ
                     };
 
-                   //Tạo bản chứng nhận
                     var claimsIdentity = new ClaimsIdentity(
                         claims, CookieAuthenticationDefaults.AuthenticationScheme);
 

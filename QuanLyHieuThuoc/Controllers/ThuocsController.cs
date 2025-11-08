@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Authorization; // <-- BẮT BUỘC
 
 namespace QuanLyHieuThuoc.Controllers
 {
-    // KHÔNG ĐẶT [Authorize] ở đây. Chúng ta sẽ đặt ở từng hàm cụ thể.
     public class ThuocsController : Controller
     {
         private readonly MyDbContext _context;
