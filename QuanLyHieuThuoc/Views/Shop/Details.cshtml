@@ -6,129 +6,91 @@
 }
 
 <style>
-@Html.Raw(@"
-.details-container {
-    background-color: #0d1a26;
-    color: #88ffff;
-    min-height: 100vh;
-    padding: 60px 0;
-    font-family: 'Consolas', monospace;
-}
+    .details-container {
+        background-color: #0d1a26;
+        color: #88ffff;
+        min-height: 100vh;
+        padding: 60px 0;
+        font-family: 'Consolas', monospace;
+    }
 
-.title {
-    font-size: 2.2rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #00ffff;
-    text-shadow: 0 0 10px #00ffff;
-    margin-bottom: 40px;
-    /* Hiệu ứng Typing */
-    overflow: hidden; 
-    white-space: nowrap; 
-    border-right: 3px solid #00ffff; 
-    animation: 
-        typing 2.5s steps(30, end) forwards,
-        blink-caret .75s step-end infinite;
-}
+    body {
+        background-color: #0d1a26 !important;
+    }
 
-body { background-color: #0d1a26 !important; } 
+    .details-card {
+        max-width: 700px;
+        margin: 40px auto;
+        background: rgba(1, 25, 35, 0.95);
+        border: 1px solid #00aaff;
+        border-radius: 5px;
+        padding: 30px;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    }
 
-.details-card {
-    max-width: 700px;
-    margin: 40px auto;
-    background: rgba(1, 25, 35, 0.95);
-    border: 1px solid #00aaff;
-    border-radius: 5px;
-    padding: 30px;
-    box-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
-    animation: fadeIn 0.5s ease-out 3s forwards; 
-}
+    .title {
+        font-size: 2.2rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: #00ffff;
+        text-shadow: 0 0 10px #00ffff;
+        margin-bottom: 40px;
+        text-align: center;
+    }
 
-dl {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 15px 30px;
-    text-align: left;
-}
+    dl {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 15px 30px;
+        text-align: left;
+    }
 
-dt, dd {
-    opacity: 0; /* Bắt đầu ẩn */
-    animation: appear-slide 0.5s ease-out forwards;
-}
+    dt {
+        font-weight: bold;
+        color: #00ffff;
+        text-transform: uppercase;
+    }
 
+    dd {
+        margin: 0;
+        color: #ffffff;
+        border-bottom: 1px dashed rgba(0, 255, 255, 0.3);
+        padding-bottom: 5px;
+    }
 
-dl dt:nth-of-type(1), dl dd:nth-of-type(1) { animation-delay: 3.0s; }
-dl dt:nth-of-type(2), dl dd:nth-of-type(2) { animation-delay: 3.5s; }
-dl dt:nth-of-type(3), dl dd:nth-of-type(3) { animation-delay: 4.0s; }
-dl dt:nth-of-type(4), dl dd:nth-of-type(4) { animation-delay: 4.5s; }
-dl dt:nth-of-type(5), dl dd:nth-of-type(5) { animation-delay: 5.0s; }
-dl dt:nth-of-type(6), dl dd:nth-of-type(6) { animation-delay: 5.5s; }
-dl dt:nth-of-type(7), dl dd:nth-of-type(7) { animation-delay: 6.0s; }
-dl dt:nth-of-type(8), dl dd:nth-of-type(8) { animation-delay: 6.5s; }
+    .actions {
+        margin-top: 30px;
+        text-align: center;
+    }
 
-dt {
-    font-weight: bold;
-    color: #00ffff;
-    text-transform: uppercase;
-}
+    .btn-action {
+        display: inline-block;
+        background: #00aaff;
+        border: 1px solid #00aaff;
+        color: #0d1a26;
+        padding: 8px 20px;
+        border-radius: 3px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s;
+        box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+    }
 
-dd {
-    margin: 0;
-    color: #ffffff;
-    border-bottom: 1px dashed rgba(0, 255, 255, 0.3);
-    padding-bottom: 5px;
-}
+        .btn-action:hover {
+            background: #00ccff;
+            box-shadow: 0 0 20px #00aaff;
+        }
 
-/* -------------------------------------------------- */
-/* KEYFRAMES */
-/* -------------------------------------------------- */
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #00ffcc; } 
-}
-
-@keyframes appear-slide {
-    from { opacity: 0; transform: translateX(-20px); }
-    to { opacity: 1; transform: translateX(0); }
-}
-
-
-.actions {
-    margin-top: 30px;
-    opacity: 0;
-    animation: fadeIn 1s ease-in 7s forwards; /* Hiển thị nút sau khi toàn bộ dữ liệu hiện ra */
-}
-
-
-.btn-action {
-    display: inline-block;
-    background: #00aaff;
-    border: 1px solid #00aaff;
-    color: #0d1a26;
-    padding: 8px 20px;
-    border-radius: 3px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s;
-    box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
-}
-.btn-action:hover {
-    background: #00ccff;
-    box-shadow: 0 0 20px #00aaff;
-}
-")
+    .btn-secondary {
+        background: none;
+        color: #00ffcc;
+        border-color: #00ffcc;
+    }
 </style>
 
 <div class="details-container">
     <div class="details-card">
-        <h1 class="title">DƯỢC PHẨM</h1> 
+        <h1 class="title">DƯỢC PHẨM</h1>
         <p style="color: #00ffcc; text-align: center; margin-top: -30px;">@Model.TenThuoc</p>
         <dl>
             <dt>MÔ TẢ</dt>
@@ -145,7 +107,7 @@ dd {
 
             <dt>LOẠI THUỐC</dt>
             <dd>@(Model.LoaiThuoc?.TenLoaiThuoc ?? "UNKNOWN")</dd>
-            
+
             <dt>TRẠNG THÁI</dt>
             <dd style="color: @(Model.IsDeleted ? "#ff6666" : "#00ff00");">
                 @(Model.IsDeleted ? "TẠM HẾT" : "CÒN HÀNG")
@@ -153,7 +115,7 @@ dd {
         </dl>
         <div class="actions">
             <a asp-controller="Thuocs" asp-action="Edit" asp-route-id="@Model.ThuocId" class="btn-action">CHỈNH SỬA</a>
-            <a asp-controller="Shop" asp-action="Index" class="btn-action" style="background: none; color: #00ffcc; border-color: #00ffcc;">QUAY LẠI</a>
+            <a asp-controller="Shop" asp-action="Index" class="btn-action btn-secondary">QUAY LẠI</a>
         </div>
     </div>
 </div>

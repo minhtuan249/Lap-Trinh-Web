@@ -38,6 +38,9 @@ builder.Services.AddAuthorization(options =>
     // Plc 2: Chỉ cần là người dùng đã đăng nhập (Chức năng Xem/Sửa)
     options.AddPolicy("YeuCauDangNhap", policy =>
         policy.RequireAuthenticatedUser());
+
+    options.AddPolicy("YeuCauNhanVien", policy =>
+        policy.RequireRole("Quản lý", "Dược sĩ"));
 });
 
 
